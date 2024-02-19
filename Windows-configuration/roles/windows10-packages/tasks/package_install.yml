@@ -1,0 +1,48 @@
+---
+# tasks file for windows_packages
+
+- name: Install packages
+  win_chocolatey:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ package_list }}"
+
+- name: Download the 7-Zip package
+  win_get_url:
+    url: https://www.7-zip.org/a/7z1701-x64.msi
+    dest: 'C:\temp\7z.msi'
+  register: download_7zip
+  failed_when: download_7zip.status_code not in [200, 201]
+
+- name: Download Quixel Mixer
+  win_get_url:
+    url: https://d2shgxa8i058x8.cloudfront.net/mixer/win/Quixel_Mixer_2022.1.1_Beta.exe
+    dest: "{{ working_path }}Quixel_Mixer_2022.1.1_Beta.exe"
+
+- name: Install Quixel Mixer
+  win_command: "{{ working_path }}Quixel_Mixer_2022.1.1_Beta.exe /S"
+
+- name: Download Quixel Bridge
+  win_get_url:
+    url: https://d2shgxa8i058x8.cloudfront.net/bridge/win/Bridge.exe
+    dest: "{{ working_path }}Bridge.exe"
+
+- name: Install Quixel Bridge
+  win_command: "{{ working_path }}Bridge.exe /S"
+
+- name: Install notepadplusplus version 8.6
+  win_chocolatey:
+    name: notepadplusplus
+    version: '8.6'
+
+- name: Install treesize
+  win_chocolatey:
+    name: treesizefree
+    state: present
+    ignore_checksums: yes
+
+- name: Install Adobe Reader
+  win_chocolatey:
+    name: "adobereader"
+    version: "11.0.10"
+    ignore_checksums: yes

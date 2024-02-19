@@ -1,0 +1,4 @@
+---
+- name: Install Oracle Linux 9.1 for WSL
+  win_shell: wsl --install -d OracleLinux_9_1
+  ignore_errors: yes

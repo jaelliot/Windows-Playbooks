@@ -1,0 +1,6 @@
+---
+# roles/create_shortcut/tasks/main.yml
+- name: Create an application shortcut for an executable in PATH to your desktop
+  win_shortcut:
+    src: cmd.exe
+    dest: "{{ ansible_env.USERPROFILE }}\\Desktop\\Command prompt.lnk"

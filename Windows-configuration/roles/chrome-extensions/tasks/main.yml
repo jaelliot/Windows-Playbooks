@@ -1,0 +1,25 @@
+- name: Install Chrome Extensions
+  win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist
+    name: "{{ item.name }}"
+    data: "{{ item.id }};https://clients2.google.com/service/update2/crx"
+    type: string
+    state: present
+  loop:
+    - { name: "1", id: "enamippconapkdmgfgjchkhakpfinmaj" }  # DeArrow
+    - { name: "2", id: "ponfpcnoihfmfllpaingbgckeeldkhle" }  # Enhancer for YouTube™
+    - { name: "3", id: "nakplnnackehceedgkgkokbgbmfghain" }  # Fakespot
+    - { name: "4", id: "ghbmnnjooekpmoecnnnilnnbdlolhkhi" }  # Google Docs Offline
+    - { name: "5", id: "aapbdbdomjkkjkaonfhkkikfgjllcleb" }  # Google Translate
+    - { name: "6", id: "agleiimpggapjekcdhdjbmegjbbkleie" }  # Ground News - Bias Checker
+    - { name: "7", id: "fihnjjcciajhdojfnbdddfaoknhalnja" }  # I don't care about cookies
+    - { name: "8", id: "hdokiejnpimakedhajhdlcegeplioahd" }  # LastPass
+    - { name: "9", id: "gebbhagfogifgggkldgodflihgfeippi" }  # Return YouTube Dislike
+    - { name: "10", id: "mnjggcdmjocbbbhaepdhchncahnbgone" }  # SponsorBlock for YouTube
+    - { name: "11", id: "fiabciakcmgepblmdkmemdbbkilneeeh" }  # Tab Suspender
+    - { name: "12", id: "cjpalhdlnbpafiamejdnhcphjbkeiagm" }  # uBlock Origin
+    - { name: "13", id: "mfinfiagnpnbijihonbeadgnfbihhpcf" }  # Udemy Custom Speed Changer
+    - { name: "14", id: "pjnefijmagpdjfhhkpljicbbpicelgko" }  # Voice In
+    - { name: "15", id: "jiaopdjbehhjgokpphdfgmapkobbnmjp" }  # Youtube-shorts block
+    - { name: "16", id: "fmlboobidmkelggdainpknloccojpppi" }  # Screen Shader
+    - { name: "19", id: "mefhakmgclhhfbdadeojlkbllmecialg" }  # Tabby Cat

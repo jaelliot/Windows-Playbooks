@@ -1,0 +1,40 @@
+# System Preferences
+AutoUpdate=enabled
+TimeZone=America/Los_Angeles  # Updated for Pacific Time Zone
+
+# Application Settings
+DefaultBrowser=Firefox
+InstallOfficeSuite=enabled
+OfficeSuiteVersion=2024  # Updated as requested
+
+# Security Settings
+FirewallEnabled=true
+Antivirus=Windows Defender
+EnableRansomwareProtection=enabled
+
+# User Preferences
+DesktopBackground=Custom  # Specify the path to your custom background image, e.g., C:\Users\YourName\Pictures\background.jpg
+ScreenSaverTimeout=10min
+EnableNightLight=enabled
+DarkMode=enabled  # Set interface to dark mode for all applications that support it
+
+# Privacy Settings
+Telemetry=Disabled  # Completely disable telemetry to enhance privacy
+DisableAdvertisingID=enabled
+DisableLocationTracking=enabled
+DisableCortana=enabled
+
+# Performance Optimization
+VisualEffects=BestPerformance
+PowerPlan=HighPerformance
+
+# Update Preferences
+ActiveHoursStart=9AM
+ActiveHoursEnd=5PM
+PauseUpdates=enabled
+
+# Additional Enhancements
+EnableFocusAssist=AlarmsOnly  # Minimize distractions by allowing only alarms to interrupt
+DisableStartupApps=enabled  # Speed up startup times by disabling unnecessary startup applications
+PrivacyScreenLock=enabled  # Ensure screen lock is enabled for privacy when away
+CleanUpTemporaryFiles=Monthly  # Schedule a monthly cleanup of temporary files to free up space

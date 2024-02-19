@@ -1,0 +1,25 @@
+---
+# defaults file for windows_packages
+package_list: 
+  - git
+  - googlechrome
+  - firefox
+  - spotify
+  - epicgameslauncher
+  - microsoft-office
+  - discord
+  - 1password
+  - docker-desktop
+  - norton-antivirus
+  - whatsapp
+  - microsoft-windows-terminal
+  - vscode
+  - balenaetcher
+  - telegram
+  - notion
+  - signal-desktop
+  - androidstudio
+  - transgui
+  - exiftool
+
+working_path: 'c:\Temp\w10setup\'

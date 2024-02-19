@@ -1,0 +1,4 @@
+---
+- name: Install Kali Linux for WSL
+  win_shell: wsl --install -d Kali-Linux
+  ignore_errors: yes

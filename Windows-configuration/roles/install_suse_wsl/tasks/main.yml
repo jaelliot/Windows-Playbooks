@@ -1,0 +1,4 @@
+---
+- name: Install SUSE Linux Enterprise Server 15 SP4 for WSL
+  win_shell: wsl --install -d SUSE-Linux-Enterprise-Server-15-SP4
+  ignore_errors: yes

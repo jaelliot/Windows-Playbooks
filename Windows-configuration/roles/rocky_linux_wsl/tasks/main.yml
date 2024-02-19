@@ -1,0 +1,53 @@
+- name: Enable features for WSL
+  win_feature:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - Microsoft-Windows-Subsystem-Linux
+    - VirtualMachinePlatform
+
+- name: Set WSL default version to 2
+  win_shell: wsl --set-default-version 2
+
+- name: Check if 7-Zip is installed
+  win_command: '"C:\\Program Files\\7-Zip\\7z.exe" -h'
+  register: seven_zip_check
+  failed_when: seven_zip_check.rc != 0
+  ignore_errors: true
+
+- name: Fail if 7-Zip is not installed
+  fail:
+    msg: "7-Zip is not installed. Please install 7-Zip before running this script."
+  when: seven_zip_check is failed
+
+- name: Download Rocky Linux 9 Container Base
+  win_get_url:
+    url: https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Base.latest.x86_64.tar.xz
+    dest: "C:\\Users\\{{ ansible_env.USERNAME }}\\Downloads\\Rocky-9-Container-Base.latest.x86_64.tar.xz"
+    force: yes
+  register: download_result
+  until: download_result is succeeded
+  retries: 3
+  delay: 10
+
+- name: Create a directory for Rocky Linux in WSL if it does not exist
+  win_file:
+    path: "C:\\Users\\{{ ansible_env.USERNAME }}\\AppData\\RockyLinux9"
+    state: directory
+
+- name: Extract the downloaded file
+  win_shell: |
+    "C:\\Program Files\\7-Zip\\7z.exe" x "C:\\Users\\{{ ansible_env.USERNAME }}\\Downloads\\Rocky-9-Container-Base.latest.x86_64.tar.xz" -o"C:\\Users\\{{ ansible_env.USERNAME }}\\Downloads"
+  args:
+    creates: "C:\\Users\\{{ ansible_env.USERNAME }}\\Downloads\\rocky-9-image.tar"
+  when: download_result is succeeded
+
+- name: Check if RockyLinux-9 is already imported in WSL
+  win_shell: wsl -l -v
+  register: wsl_list
+  ignore_errors: true
+
+- name: Import Rocky Linux into WSL-2
+  win_shell: |
+    wsl --import RockyLinux-9 "C:\\Users\\{{ ansible_env.USERNAME }}\\AppData\\RockyLinux9" "C:\\Users\\{{ ansible_env.USERNAME }}\\Downloads\\rocky-9-image.tar" --version 2
+  when: "'RockyLinux-9' not in wsl_list.stdout"

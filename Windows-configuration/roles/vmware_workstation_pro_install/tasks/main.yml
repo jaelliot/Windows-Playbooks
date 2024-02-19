@@ -1,0 +1,8 @@
+---
+- name: Download VMware Workstation Pro
+  win_get_url:
+    url: https://www.vmware.com/go/getworkstation-win
+    dest: "{{ working_path }}vmware_workstation_pro.exe"
+
+- name: Install VMware Workstation Pro
+  win_command: "{{ working_path }}vmware_workstation_pro.exe /s /v /qn"

@@ -1,0 +1,4 @@
+---
+- name: Install Ubuntu for WSL
+  win_shell: wsl --install -d Ubuntu
+  ignore_errors: yes

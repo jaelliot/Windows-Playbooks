@@ -1,0 +1,4 @@
+---
+- name: Set WSL default version to 2
+  win_shell: wsl --set-default-version 2
+  ignore_errors: yes

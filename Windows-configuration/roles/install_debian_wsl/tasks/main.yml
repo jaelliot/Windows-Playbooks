@@ -1,0 +1,4 @@
+---
+- name: Install Debian for WSL
+  win_shell: wsl --install -d Debian
+  ignore_errors: yes

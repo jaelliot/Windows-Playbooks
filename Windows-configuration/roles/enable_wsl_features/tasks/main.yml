@@ -1,0 +1,8 @@
+---
+- name: Enable features for WSL
+  win_feature:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - Microsoft-Windows-Subsystem-Linux
+    - VirtualMachinePlatform
